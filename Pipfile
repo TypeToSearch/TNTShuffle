@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 spotipy = "*"
+dotenv = "*"
 
 [dev-packages]
 
