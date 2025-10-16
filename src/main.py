@@ -1,17 +1,16 @@
-import random
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
-from dotenv import dotenv_values
+import webview
+from js_interface import JsInterface
 
-CONFIG = dotenv_values(".env")
+HTML_DIR = "../web/"
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-    client_id=CONFIG["CLIENT_ID"],
-    client_secret=CONFIG["CLIENT_SECRET"],
-    redirect_uri='http://127.0.0.1:8888/callback',
-    scope='user-read-playback-state user-modify-playback-state playlist-read-private'
-))
 
-current = sp.current_playback()
-print(current)
+if __name__ == "__main__":
+    api = JsInterface()
+    webview.create_window(
+        'TNT Shuffler',
+        HTML_DIR+"index.html",
+        js_api=api,
+        min_size=(600, 450)
+    )
+    webview.start()
 
